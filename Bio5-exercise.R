@@ -23,12 +23,24 @@ APOC3 <- makeGenotypes(APOC3)
 
 ###### QC for minor allele frequency
 
+#########Minor allele frequency
+
 maf <- matrix(0, 2, nsnps)
-for (i in 1:nsnps) {
-  maf[,i] <- summary(APOC3[,i])$allele.freq[, 2]
+
+for(i in 1:nsnps) {
+  allele_freqs <- summary(APOC3[,i])$allele.freq[,2]
+  maf[,i] <- min(allele_freqs)
 }
 
 maf
+
+############allele frequency
+af <- matrix(0, 2, nsnps)
+for (i in 1:nsnps) {
+  af[,i] <- summary(APOC3[,i])$allele.freq[, 2]
+}
+
+af
 
 
 ##### Plot minor allele frequency
